@@ -37,10 +37,10 @@ public class movement : MonoBehaviour
   void Update()
   {
     if (constructed) { Movement(); }
-    transform.Translate(transform.forward * speed * Time.deltaTime );
 
-    if(bodyParts[0][0] != null && constructed) { 
-      transform.position = new Vector3(transform.position.x, bodyParts[0][0].transform.position.y, transform.position.z);
+    if(bodyParts[0][0] != null && constructed) {
+      transform.Translate(transform.forward * speed * Time.deltaTime);
+      transform.position = new Vector3(transform.position.x, bodyParts[0][0].transform.position.y + 4, transform.position.z);
     }
     if(finish)
 		{
@@ -73,7 +73,7 @@ public class movement : MonoBehaviour
 
         curBodyPart.position = Vector3.Slerp(curBodyPart.position,
                                             newpos - Vector3.forward * minDistance,
-                                            0.5f); //TODO kodu hallet
+                                            0.5f); 
       }
     }
     }
@@ -125,7 +125,8 @@ public class movement : MonoBehaviour
     for (int k = 0; k < amount ; k++) { 
       for(int i = 0; i < widght; i++)
 		  {
-        RemoveBodyPart(0, i);
+        bodyParts[i][0].gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
+        bodyParts[i][0].gameObject.GetComponent<Rigidbody>().AddRelativeForce(400 * (transform.forward + (Vector3.right + Vector3.up) * Random.Range(-0.5f, 0.5f)));
         for (int m = 1; m <= lenght - 1; m++)
         {
           bodyParts[i][m - 1] = bodyParts[i][m];
@@ -159,9 +160,4 @@ public class movement : MonoBehaviour
       finish = true;
 		}
   }
-
-  void RemoveBodyPart(int w, int l)
-	{
-    OP.DeactiveBall(bodyParts[l][w].gameObject);
-	}
 }

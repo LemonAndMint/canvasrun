@@ -61,6 +61,10 @@
     <Compile Include="Assets\scripts\Index.cs" />
     <Compile Include="Assets\scripts\finish.cs" />
     <Compile Include="Assets\scripts\pit.cs" />
+    <Compile Include="Assets\changeMaterial.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Polygonal Particles\Assets\Shaders\GradientBackgroundShader.shader" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

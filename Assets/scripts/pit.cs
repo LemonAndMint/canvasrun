@@ -15,8 +15,17 @@ public class pit : MonoBehaviour
     if (other.tag == "balls" && entered)
     {
       entered = false;
-      anim.SetBool("open", true);
-      mmt.RemoveTopSection(amount);
+      StartCoroutine(ExampleCoroutine());
     }
+  }
+
+  IEnumerator ExampleCoroutine()
+	{
+    mmt.RemoveTopSection(amount);
+    mmt.constructed = false;
+    yield return new WaitForSeconds(1f);
+    anim.SetBool("open", true);
+    yield return new WaitForSeconds(0.25f);
+    mmt.constructed = true;
   }
 }

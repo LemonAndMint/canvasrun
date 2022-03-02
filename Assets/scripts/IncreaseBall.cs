@@ -9,13 +9,13 @@ public class IncreaseBall : MonoBehaviour
 	public int amount;
 
 	private bool entered = true;
-	private void OnCollisionEnter(Collision collision)
+	private void OnTriggerEnter(Collider other)
 	{
-		if(collision.collider.tag == "balls" && entered)
+		if (other.tag == "balls" && entered)
 		{
 			entered = false;
 			if (lenghtorwidth) { mmt.AddToTail(amount); }
 			else { mmt.AddTopParts(mmt.lenght); }
-		}		
+		}
 	}
 }
